@@ -26,7 +26,7 @@ function* createMessageWorker(action) {
 function* deleteMessageWorker(action) {
   try {
     const response = yield call(deleteMessage, action);
-    yield put(fetchedMessages(response));
+    yield put({ type: FETCH_MESSAGES });
   } catch (e) {
     console.log(e);
   }

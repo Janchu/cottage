@@ -31,19 +31,24 @@ class MessageBoard extends Component {
     this.props.createMessage(message);
   }
 
+  handleDeleteMessage(id) {
+    this.props.deleteMessage(id)
+  }
+
   render() {
     return (
       <Comment.Group>
         <Header as="h3" dividing>Ilmoitustaulu</Header>
 
         {this.props.messages.map(message => (
-          <Comment>
+          <Comment key={message._id}>
             <Comment.Content>
               <Comment.Author as="a">{message.author}</Comment.Author>
               <Comment.Metadata>
                 <div>{moment(message.timestamp).format('DD.MM.YYYY HH:mm')}</div>
               </Comment.Metadata>
               <Comment.Text>{message.text}</Comment.Text>
+              <button onClick={() => this.handleDeleteMessage(message._id)}>Poista</button>
             </Comment.Content>
           </Comment>
         ))}

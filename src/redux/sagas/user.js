@@ -9,7 +9,7 @@ function* authenticationWorker(action) {
     const response = yield call(authenticate, action);
     if (response.success) {
       yield put(authenticationSuccess({
-        name: action.name, token: response.token, id: response.id,
+        name: response.name, token: response.token, id: response.id,
       }));
     } else {
       yield put(authenticationFailure(response.msg));
