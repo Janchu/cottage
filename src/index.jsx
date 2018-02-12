@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 import App from './App';
 import configureStore from './redux/store';
 
-import 'semantic-ui-css/semantic.min.css';
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -18,8 +18,11 @@ const store = configureStore(getCookie('access_token') && localStorage.getItem('
   ? JSON.parse(localStorage.getItem('reduxState'))
   : {});
 
-ReactDOM.render(<Provider store={store}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-</Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById('root'),
+);
