@@ -41,8 +41,7 @@
   "scripts": {
     "start": "webpack-dev-server --watch --colors --progress --inline",
     "build": "webpack -p --progress --colors",
-    "test": "npm run lint && react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "test": "npm run lint",
     "lint": "eslint src --ext .js --ext .jsx",
     "lint-fix": "eslint src --fix --ext .js --ext .jsx"
   }
