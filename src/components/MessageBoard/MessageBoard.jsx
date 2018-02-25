@@ -8,6 +8,7 @@ const propTypes = {
   user: PropTypes.string.isRequired,
   fetchMessages: PropTypes.func.isRequired,
   createMessage: PropTypes.func.isRequired,
+  deleteMessage: PropTypes.func.isRequired,
   messages: PropTypes.array,
 };
 
@@ -19,7 +20,7 @@ const defaultProps = {
 class MessageBoard extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = { message: '' };
     this.handleMessage = this.handleMessage.bind(this);
   }
   componentWillMount() {
@@ -27,12 +28,13 @@ class MessageBoard extends Component {
   }
 
   handleMessage() {
-    const message = { text: this.state.newMessage, author: this.props.user };
+    const message = { text: this.state.message, author: this.props.user };
     this.props.createMessage(message);
+    this.setState({ message: '' });
   }
 
   handleDeleteMessage(id) {
-    this.props.deleteMessage(id)
+    this.props.deleteMessage(id);
   }
 
   render() {
@@ -43,20 +45,26 @@ class MessageBoard extends Component {
         {this.props.messages.map(message => (
           <Comment key={message._id}>
             <Comment.Content>
-              <Comment.Author as="a">{message.author}</Comment.Author>
-              <Comment.Metadata>
-                <div>{moment(message.timestamp).format('DD.MM.YYYY HH:mm')}</div>
-              </Comment.Metadata>
+              <Comment.Author>{message.author}</Comment.Author>
+              <Comment.Metadata>{moment(message.timestamp).format('DD.MM.YYYY HH:mm')}</Comment.Metadata>
               <Comment.Text>{message.text}</Comment.Text>
-              <button onClick={() => this.handleDeleteMessage(message._id)}>Poista</button>
+              {message.author === this.props.user &&
+                <Comment.Actions>
+                  <Comment.Action
+                    onClick={() => this.handleDeleteMessage(message._id)}
+                  >
+                    Poista
+                  </Comment.Action>
+                </Comment.Actions>
+              }
             </Comment.Content>
           </Comment>
         ))}
 
         <Form reply>
           <Form.TextArea
-            value={this.state.newMessage}
-            onChange={e => this.setState({ newMessage: e.target.value })}
+            value={this.state.message}
+            onChange={(e, data) => this.setState({ message: data.value })}
           />
           <Button
             content="Lisää viesti ilmoitustaululle"

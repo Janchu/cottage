@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card, Form, Message } from 'semantic-ui-react';
 
 const propTypes = {
-  doLogin: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
   error: PropTypes.string,
 };
 
@@ -15,7 +15,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      username: '',
       password: '',
     };
     this.handleLogin = this.handleLogin.bind(this);
@@ -23,7 +23,7 @@ class Login extends Component {
   }
 
   handleLogin() {
-    this.props.doLogin({ name: this.state.name, password: this.state.password });
+    this.props.login({ username: this.state.username, password: this.state.password });
   }
 
   handleChange(event, field) {
@@ -44,8 +44,8 @@ class Login extends Component {
                 <Form.Input
                   width={16}
                   label="Käyttäjätunnus"
-                  value={this.state.name}
-                  onChange={(event) => { this.handleChange(event, 'name'); }}
+                  value={this.state.username}
+                  onChange={(event) => { this.handleChange(event, 'username'); }}
                 />
               </Form.Group>
               <Form.Group>

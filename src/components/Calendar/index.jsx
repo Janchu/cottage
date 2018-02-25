@@ -43,7 +43,6 @@ class Calendar extends Component {
   }
 
   removeReservation(slotInfo) {
-    console.log(slotInfo);
     this.props.deleteBooking(slotInfo._id);
     // TODO don't allow remove reservations with someone elses name
     // const updatedEvents = this.state.events.filter(x => x !== event);

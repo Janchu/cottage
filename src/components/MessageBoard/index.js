@@ -1,22 +1,13 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import MessageBoard from './MessageBoard';
-import { fetchMessages, createMessage, deleteMessage } from '../../redux/actions/message';
+import { fetchMessages, createMessage, deleteMessage } from '../../redux/dux/messages';
 
 
 export default connect(
   state => ({
     messages: state.message.messages,
-    user: state.user.name,
+    user: state.user.username,
   }),
-  dispatch => ({
-    fetchMessages() {
-      dispatch(fetchMessages());
-    },
-    createMessage(message) {
-      dispatch(createMessage(message));
-    },
-    deleteMessage(id) {
-      dispatch(deleteMessage(id));
-    },
-  }),
+  dispatch => (bindActionCreators({ fetchMessages, createMessage, deleteMessage }, dispatch)),
 )(MessageBoard);

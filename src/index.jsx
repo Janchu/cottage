@@ -10,8 +10,11 @@ import configureStore from './redux/store';
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length == 2) return parts.pop().split(';').shift();
+  let parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    parts = parts.pop().split(';').shift();
+  }
+  return parts;
 }
 
 const store = configureStore(getCookie('access_token') && localStorage.getItem('reduxState')

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Login from './Login';
-import { authenticateUser } from '../../redux/actions/user';
+import { login } from '../../redux/dux/users';
 
 
 export default connect(
@@ -8,9 +9,5 @@ export default connect(
     isLoggedIn: !!state.user.token,
     error: state.user.error,
   }),
-  dispatch => ({
-    doLogin(creds) {
-      dispatch(authenticateUser(creds));
-    },
-  }),
+  dispatch => bindActionCreators({ login }, dispatch),
 )(Login);

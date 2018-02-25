@@ -1,22 +1,13 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Booking from './Booking';
-import { fetchBookings, createBooking, deleteBooking } from '../../redux/actions/booking';
+import { fetchBookings, createBooking, deleteBooking } from '../../redux/dux/bookings';
 
 
 export default connect(
   state => ({
     bookings: state.booking.bookings,
-    user: state.user.name,
+    user: state.user.username,
   }),
-  dispatch => ({
-    fetchBookings() {
-      dispatch(fetchBookings());
-    },
-    createBooking(booking) {
-      dispatch(createBooking(booking));
-    },
-    deleteBooking(id) {
-      dispatch(deleteBooking(id));
-    },
-  }),
+  dispatch => (bindActionCreators({ fetchBookings, createBooking, deleteBooking }, dispatch)),
 )(Booking);

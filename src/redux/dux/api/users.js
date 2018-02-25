@@ -10,18 +10,18 @@ import axios from 'axios';
 
 export function authenticate(action) {
   const promise = axios.post(
-    'http://localhost:8080/users/authenticate',
-    { name: action.name, password: action.password },
+    'http://localhost:8080/users/login',
+    { username: action.username, password: action.password },
     { withCredentials: true, timeout: 5000 },
   )
-    .then(response => response.data)
+    .then(response => response)
     .catch(error => (error));
   return promise;
 }
 
 export function logoutUser() {
   const promise = axios.get('http://localhost:8080/users/logout')
-    .then(response => response.data)
+    .then(response => response)
     .catch(error => (error));
   return promise;
 }
