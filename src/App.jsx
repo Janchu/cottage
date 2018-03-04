@@ -19,12 +19,10 @@ const defaultProps = {
 };
 
 const App = props => (
-  <div>
-    <Container>
-      <AppBar isLoggedIn={props.isLoggedIn} logout={() => props.logout()} />
-      <Route path="/" component={props.isLoggedIn ? Booking : Login} />
-    </Container>
-  </div>
+  <Container>
+    <AppBar isLoggedIn={props.isLoggedIn} logout={() => props.logout()} />
+    <Route path="/" component={props.isLoggedIn ? Booking : Login} />
+  </Container>
 );
 
 App.propTypes = propTypes;

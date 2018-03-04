@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Form, Message } from 'semantic-ui-react';
+import { Button, Form, Message } from 'semantic-ui-react';
 
 const propTypes = {
   login: PropTypes.func.isRequired,
@@ -14,10 +14,7 @@ const defaultProps = {
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
+    this.state = { username: '', password: '' };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -35,35 +32,31 @@ class Login extends Component {
   render() {
     const { error } = this.props;
     return (
-      <div>
+      <div style={{ maxWidth: 400, margin: 'auto' }}>
         {error && <Message error>{error}</Message>}
-        <Card style={{ margin: 'auto' }}>
-          <Card.Content>
-            <Form>
-              <Form.Group>
-                <Form.Input
-                  width={16}
-                  label="Käyttäjätunnus"
-                  value={this.state.username}
-                  onChange={(event) => { this.handleChange(event, 'username'); }}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Input
-                  width={16}
-                  label="Salasana"
-                  type="password"
-                  value={this.state.password}
-                  onChange={(event) => { this.handleChange(event, 'password'); }}
-                />
-              </Form.Group>
+        <Form>
+          <Form.Group>
+            <Form.Input
+              width={16}
+              label="Käyttäjätunnus"
+              value={this.state.username}
+              onChange={e => this.handleChange(e, 'username')}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Input
+              width={16}
+              label="Salasana"
+              type="password"
+              value={this.state.password}
+              onChange={e => this.handleChange(e, 'password')}
+            />
+          </Form.Group>
+          <Button style={{ marginTop: 32 }} fluid color="blue" onClick={this.handleLogin}>
+            Kirjaudu sisään
+          </Button>
 
-              <Button style={{ marginTop: 32 }} fluid color="blue" onClick={this.handleLogin}>
-                Kirjaudu sisään
-              </Button>
-            </Form>
-          </Card.Content>
-        </Card>
+        </Form>
       </div>
     );
   }

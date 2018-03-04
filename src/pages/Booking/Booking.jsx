@@ -25,7 +25,7 @@ class Booking extends Component {
     return (
       <Grid>
         <Grid.Row>
-          <Grid.Column width={10}>
+          <Grid.Column width={11}>
             <Calendar
               bookings={this.props.bookings}
               user={this.props.user}
