@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import Header from './components/Header';
+import AppBar from './components/AppBar';
 import Login from './pages/Login';
 import Booking from './pages/Booking';
 import { logout } from './redux/dux/users';
@@ -20,8 +20,8 @@ const defaultProps = {
 
 const App = props => (
   <div>
-    <Header isLoggedIn={props.isLoggedIn} logout={() => props.logout()} />
     <Container>
+      <AppBar isLoggedIn={props.isLoggedIn} logout={() => props.logout()} />
       <Route path="/" component={props.isLoggedIn ? Booking : Login} />
     </Container>
   </div>
