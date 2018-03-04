@@ -39,14 +39,14 @@ class MessageBoard extends Component {
 
   render() {
     return (
-      <Comment.Group>
+      <Comment.Group minimal>
         <Header as="h3" dividing>Ilmoitustaulu</Header>
 
         {this.props.messages.map(message => (
-          <Comment key={message._id}>
+          <Comment key={message._id} style={{ paddingTop: 0, paddingBottom: 7 }}>
             <Comment.Content>
-              <Comment.Author>{message.author}</Comment.Author>
-              <Comment.Metadata>{moment(message.timestamp).format('DD.MM.YYYY HH:mm')}</Comment.Metadata>
+              <Comment.Author as="a">{message.author}</Comment.Author>
+              <Comment.Metadata><div>{moment(message.timestamp).format('DD.MM.YYYY HH:mm')}</div></Comment.Metadata>
               <Comment.Text>{message.text}</Comment.Text>
               {message.author === this.props.user &&
                 <Comment.Actions>
