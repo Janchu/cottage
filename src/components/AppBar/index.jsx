@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Divider, Icon, Header, Menu } from 'semantic-ui-react';
+import { Button, Icon, Header } from 'semantic-ui-react';
 
 const propTypes = {
   logout: PropTypes.func,
@@ -20,7 +20,7 @@ class AppBar extends Component {
 
   render() {
     return (
-      <div style={{ marginTop: 32, marginBottom: 32 }}>
+      <div style={{ paddingTop: 32, paddingBottom: 32 }}>
         <Header as="h1" dividing>
           Mökki <span style={{ fontSize: 11, color: '#ccc' }}>ALPHA</span>
           {this.props.isLoggedIn &&
