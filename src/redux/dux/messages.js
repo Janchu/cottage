@@ -22,21 +22,12 @@ export default function (state = {}, action = {}) {
 
 
 // Action creators
-export function fetchMessages() {
-  return { type: FETCH };
-}
-
-export function fetchedMessages(messages) {
-  return { type: FETCHED, messages };
-}
-
-export function createMessage(message) {
-  return { type: CREATE, text: message.text, author: message.author };
-}
-
-export function deleteMessage(id) {
-  return { type: DELETE, id };
-}
+export const fetchMessages = () => ({ type: FETCH });
+export const fetchedMessages = messages => ({ type: FETCHED, messages });
+export const createMessage = message => ({
+  type: CREATE, text: message.text, author: message.author,
+});
+export const deleteMessage = id => ({ type: DELETE, id });
 
 
 // Sagas

@@ -4,9 +4,9 @@ import * as api from './api/users';
 
 
 // Actions
-export const LOGIN = 'USER/LOGIN';
 export const AUTHENTICATION_SUCCESS = 'USER/AUTHENTICATION_SUCCESS';
 export const AUTHENTICATION_FAILURE = 'USER/AUTHENTICATION_FAILURE';
+export const LOGIN = 'USER/LOGIN';
 export const LOGOUT = 'USER/LOGOUT';
 
 
@@ -31,33 +31,22 @@ export default function (state = {}, action) {
 
 
 // Action creators
-export function login(creds) {
-  return { type: LOGIN, username: creds.username, password: creds.password };
-}
-
-export function authenticationSuccess(user) {
-  return { type: AUTHENTICATION_SUCCESS, user };
-}
-
-export function authenticationFailure(error) {
-  return { type: AUTHENTICATION_FAILURE, error };
-}
-
-export function logout() {
-  return { type: LOGOUT };
-}
+export const authenticationSuccess = user => ({ type: AUTHENTICATION_SUCCESS, user });
+export const authenticationFailure = error => ({ type: AUTHENTICATION_FAILURE, error });
+export const login = creds => ({ type: LOGIN, username: creds.username, password: creds.password });
+export const logout = () => ({ type: LOGOUT });
 
 
 // Sagas
 function* authenticationWorker(action) {
   try {
     const response = yield call(api.authenticate, action);
-    if (response.success) {
+    if (response.status === 200 && response.data && response.data.success) {
       yield put(authenticationSuccess({
-        username: response.username, token: response.token, id: response.id,
+        username: response.data.username, token: response.data.token, id: response.data.id,
       }));
     } else {
-      yield put(authenticationFailure(response.msg));
+      yield put(authenticationFailure(response.data.msg));
     }
   } catch (e) {
     yield put(authenticationFailure(e));

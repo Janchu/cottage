@@ -22,23 +22,12 @@ export default function (state = {}, action = {}) {
 
 
 // Action creators
-export function fetchBookings() {
-  return { type: FETCH };
-}
-
-export function fetchedBookings(bookings) {
-  return { type: FETCHED, bookings };
-}
-
-export function createBooking(booking) {
-  return {
-    type: CREATE, title: booking.title, start: booking.start, end: booking.end,
-  };
-}
-
-export function deleteBooking(id) {
-  return { type: DELETE, id };
-}
+export const fetchBookings = () => ({ type: FETCH });
+export const fetchedBookings = bookings => ({ type: FETCHED, bookings });
+export const createBooking = booking => ({
+  type: CREATE, title: booking.title, start: booking.start, end: booking.end,
+});
+export const deleteBooking = id => ({ type: DELETE, id });
 
 
 // Sagas
