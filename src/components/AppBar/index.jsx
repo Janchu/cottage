@@ -13,10 +13,7 @@ const defaultProps = {
 };
 
 class AppBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {}
 
   render() {
     return (

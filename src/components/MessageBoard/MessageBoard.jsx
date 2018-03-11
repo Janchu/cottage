@@ -18,24 +18,17 @@ const defaultProps = {
 
 
 class MessageBoard extends Component {
-  constructor() {
-    super();
-    this.state = { message: '' };
-    this.handleMessage = this.handleMessage.bind(this);
-  }
-  componentWillMount() {
-    this.props.fetchMessages();
-  }
+  state = { message: '' };
 
-  handleMessage() {
+  componentWillMount = () => this.props.fetchMessages()
+
+  handleMessage = () => {
     const message = { text: this.state.message, author: this.props.user };
     this.props.createMessage(message);
     this.setState({ message: '' });
   }
 
-  handleDeleteMessage(id) {
-    this.props.deleteMessage(id);
-  }
+  handleDeleteMessage = id => this.props.deleteMessage(id);
 
   render() {
     return (

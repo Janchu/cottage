@@ -12,22 +12,13 @@ const defaultProps = {
 };
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { username: '', password: '' };
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+  state = { username: '', password: '' }
 
-  handleLogin() {
-    this.props.login({ username: this.state.username, password: this.state.password });
-  }
+  handleLogin = () => this.props.login({
+    username: this.state.username, password: this.state.password,
+  })
 
-  handleChange(event, field) {
-    this.setState({
-      [field]: event.target.value,
-    });
-  }
+  handleChange = (event, field) => this.setState({ [field]: event.target.value })
 
   render() {
     const { error } = this.props;

@@ -17,9 +17,7 @@ const defaultProps = {
 };
 
 class Booking extends Component {
-  componentWillMount() {
-    this.props.fetchBookings();
-  }
+  componentWillMount = () => this.props.fetchBookings()
 
   render() {
     return (

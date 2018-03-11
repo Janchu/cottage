@@ -20,11 +20,7 @@ const defaultProps = { bookings: [] };
 
 
 class Calendar extends Component {
-  constructor(props) {
-    super(props);
-    this.addReservation = this.addReservation.bind(this);
-    this.removeReservation = this.removeReservation.bind(this);
-  }
+  state = {}
 
   // TODO get name from redux
   addReservation(slotInfo) {
@@ -42,12 +38,8 @@ class Calendar extends Component {
     // }
   }
 
-  removeReservation(slotInfo) {
-    this.props.deleteBooking(slotInfo._id);
-    // TODO don't allow remove reservations with someone elses name
-    // const updatedEvents = this.state.events.filter(x => x !== event);
-    // this.setState({ events: updatedEvents });
-  }
+  // TODO don't allow remove reservations with someone elses name
+  removeReservation = slotInfo => this.props.deleteBooking(slotInfo._id);
 
   render() {
     return (
