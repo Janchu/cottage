@@ -15,13 +15,13 @@ export function authenticate(action) {
     { withCredentials: true, timeout: 5000 },
   )
     .then(response => response)
-    .catch(error => (error));
+    .catch(error => error);
   return promise;
 }
 
 export function logoutUser() {
   const promise = axios.get('http://localhost:8080/users/logout')
     .then(response => response)
-    .catch(error => (error));
+    .catch(error => error);
   return promise;
 }

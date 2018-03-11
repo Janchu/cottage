@@ -41,12 +41,14 @@ export const logout = () => ({ type: LOGOUT });
 function* authenticationWorker(action) {
   try {
     const response = yield call(api.authenticate, action);
-    if (response.status === 200 && response.data && response.data.success) {
-      yield put(authenticationSuccess({
-        username: response.data.username, token: response.data.token, id: response.data.id,
-      }));
-    } else {
-      yield put(authenticationFailure(response.data.msg));
+    if (response.status === 200) {
+      if (response.data && response.data.success) {
+        yield put(authenticationSuccess({
+          username: response.data.username, token: response.data.token, id: response.data.id,
+        }));
+      } else {
+        yield put(authenticationFailure(response.data.msg));
+      }
     }
   } catch (e) {
     yield put(authenticationFailure(e));
